@@ -48,8 +48,52 @@ $gifs = [
 ];
 
 
+function price($price){
+
+    if ($price >= 1000){
+        $price = number_format($number, 0, ',', ' ');   
+    }
+    $price .= " ₽";
+    return $price;
+}
+
+//$price = price($price);
+
+
+
+//  ФУНКЦИИ с Демонстрации.  удалю.  копировал для изучения работы их. баловался))
+$text = "super site eee";
+
+function back_to_2007($text){
+    $words = str_split($text);
+    array_walk($words,
+        function(&$value) {
+            if (rand(0, 1)) {
+                $value = strtoupper($value);
+            }
+        }
+    );
+    $result = implode("", $words);
+    return $result;
+}
+$text = back_to_2007($text);
+
+$long_text = "Поэт инстинктивно чувствовал преимущества реального устного исполнения тех стихов";
+
+function cut_text(
+    $text, $num_letters
+) {
+    $num = mb_strlen($text);
+    if ($num > $num_letters) {
+        $text = mb_substr($text, 0, $num_letters);
+        $text .= "…";
+    }
+    return $text;
+}
+$short_text = cut_text($long_text, 15);
 
 ?>
+
 
 
 
@@ -58,7 +102,7 @@ $gifs = [
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Главная</title>
+    <title>Главная <?php print($text)  ?></title>
     <link href="../css/normalize.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
@@ -67,7 +111,7 @@ $gifs = [
 
 <header class="main-header">
     <div class="main-header__container container">
-        <h1 class="visually-hidden">YetiCave</h1>
+        <h1 class="visually-hidden">YetiCave </h1>
         <a class="main-header__logo">
             <img src="../img/logo.svg" width="160" height="39" alt="Логотип компании YetiCave">
         </a>
@@ -106,7 +150,7 @@ $gifs = [
 
 <main class="container">
     <section class="promo">
-        <h2 class="promo__title">Нужен стафф для катки?</h2>
+        <h2 class="promo__title">Нужен стафф для катки? <?php print$short_text ?> </h2>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
             <!--заполните этот список из массива категорий-->
@@ -123,9 +167,8 @@ $gifs = [
             <h2>Открытые лоты</h2>
         </div>
         <ul class="lots__list">
-        <?php foreach ($gifs as $key => $val): ?>
             <!--заполните этот список из массива с товарами-->
-            
+        <?php foreach ($gifs as $key => $val): ?>
             <li class="lots__item lot">
                 <div class="lot__image">
                     <img src="<?=$val['img']; ?>" width="350" height="260" alt="">
@@ -136,7 +179,7 @@ $gifs = [
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">стартовая цена</span>
-                            <span class="lot__cost"><?=$val['price']; ?><b class="rub">р</b></span>
+                            <span class="lot__cost"><?=$val['price']; ?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
@@ -144,7 +187,7 @@ $gifs = [
                     </div>
                 </div>
             </li>
-        <?php endforeach; ?>    
+        <?php endforeach; ?>   <!-- конец цикла , перечесления массива -->
         </ul>
     </section>
 </main>
