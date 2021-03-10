@@ -11,13 +11,13 @@ $gifs = [
     [
     'title' => '2014 Rossignol District Snowboard',
     'categories' => 'Доски и лыжи',
-    'price' => '10999',
+    'price' => '10999.55',
     'img' => 'img/lot-1.jpg',
     ],
     [
     'title' => 'DC Ply Mens 2016/2017 Snowboard',
     'categories' => 'Доски и лыжи',
-    'price' => '159999',
+    'price' => '159999.45',
     'img' => 'img/lot-2.jpg',
     ],
     [
@@ -50,8 +50,10 @@ $gifs = [
 
 function price($price){
 
+	$price = ceil($price);
+
     if ($price >= 1000){
-        $price = number_format($number, 0, ',', ' ');   
+        $price = number_format($price, 0, ',', ' ');   
     }
     $price .= " ₽";
     return $price;
