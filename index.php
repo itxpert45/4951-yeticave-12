@@ -57,40 +57,6 @@ function price($price){
     return $price;
 }
 
-//$price = price($price);
-
-
-
-//  ФУНКЦИИ с Демонстрации.  удалю.  копировал для изучения работы их. баловался))
-$text = "super site eee";
-
-function back_to_2007($text){
-    $words = str_split($text);
-    array_walk($words,
-        function(&$value) {
-            if (rand(0, 1)) {
-                $value = strtoupper($value);
-            }
-        }
-    );
-    $result = implode("", $words);
-    return $result;
-}
-$text = back_to_2007($text);
-
-$long_text = "Поэт инстинктивно чувствовал преимущества реального устного исполнения тех стихов";
-
-function cut_text(
-    $text, $num_letters
-) {
-    $num = mb_strlen($text);
-    if ($num > $num_letters) {
-        $text = mb_substr($text, 0, $num_letters);
-        $text .= "…";
-    }
-    return $text;
-}
-$short_text = cut_text($long_text, 15);
 
 ?>
 
@@ -150,7 +116,7 @@ $short_text = cut_text($long_text, 15);
 
 <main class="container">
     <section class="promo">
-        <h2 class="promo__title">Нужен стафф для катки? <?php print$short_text ?> </h2>
+        <h2 class="promo__title">Нужен стафф для катки? </h2>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
             <!--заполните этот список из массива категорий-->
@@ -179,7 +145,7 @@ $short_text = cut_text($long_text, 15);
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">стартовая цена</span>
-                            <span class="lot__cost"><?=$val['price']; ?></span>
+                            <span class="lot__cost"><?=price($val['price']);?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
